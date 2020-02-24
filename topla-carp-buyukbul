@@ -1,0 +1,19 @@
+<? 
+function topla($x,$y){
+	return $x+$y;	
+}
+function carp($x,$y){
+	return $x*$y;		
+}
+function buyukBul($x,$y){
+	if($x>$y){
+		echo $x."<br>";
+		}else if($y>$x){
+			echo $y."<br>";
+		}else{
+			echo $x."=".$y."<br>";
+		}
+}
+ 
+ 
+ ?>
