@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Başlıksız Belge</title>
+</head>
+
+<body>
+
+<?php
+$path=$_SERVER['DOCUMENT_ROOT']."/WP1/include/";
+$dosya=$path."mat.txt";
+echo $_SERVER['DOCUMENT_ROOT']. "<br>";
+if(file_exists($dosya)){
+	//unlink($dosya);
+	require $dosya;
+	$sayi1=10;
+	$sayi2=20;
+	$sayi3=topla($sayi1,$sayi2);
+	echo "Sonuc:".$sayi3."<br>";
+	if(is_file($dosya)){
+		echo filesize($dosya)."--".filectime($dosya)."<br />";
+	
+	}
+	
+	
+}else{
+	touch($dosya);
+	chmod($dosya,400);
+	echo "dosya yok...<br>";	
+}
+echo "Deneme<br>";
+
+/* if(fopen($path."deneme.txt",'a')){
+	
+	echo "Açıldı...<br>";	
+}else{
+	echo "Açılmadı...<br>";
+}*/
+$myFile=fopen($path."deneme.txt",'r') or die ("Dosya açılmadı..<br>");
+echo "Dosya:".$myFile."<br>";
+echo "Deneme<br>";
+$veri=fread($myFile,filesize($path."deneme.txt"));
+echo "Veri:".$veri."<br>";
+fclose($myFile);
+$myFile=fopen($path."deneme.txt",'r') or die ("Dosya açılmadı..<br>");
+$i=0;
+while(!feof($myFile)){
+	$v[$i]= fgets($myFile) ;	
+	echo $v[$i]. "<br>";
+	$i++;
+}
+
+echo $i.",".$v[2]. "<br><br>";
+fclose($myFile);
+
+$myFile=fopen($path."deneme.txt",'r') or die ("Dosya açılmadı..<br>");
+while(strcmp(fgetc($myFile),"n")){
+	echo fgetc($myFile)."<br>";
+}
+
+fclose($myFile);
+$myFile=fopen($path."deneme.txt",'a') or die ("Dosya açılmadı..<br>");
+
+fwrite($myFile,"\nDeneme metni\n");
+
+
+
+$dizin_adi = "./include"; 
+$dizin = opendir ($dizin_adi);
+while ( gettype($bilgi= readdir($dizin))!= boolean ){
+	 if (is_dir( "$dizin_adi/$bilgi" ) )  
+	 	print " [Dizin] " ; 
+	print ("$bilgi<br>"); 
+} 
+ closedir ($dizin);
+
+?>
+</body>
+</html>
